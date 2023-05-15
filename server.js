@@ -4,10 +4,13 @@ const cors = require('cors')
 
 const app = express()
 
-app.use(cors({origin: 'http://localhost:5173'})) // Frontend app url
+const frontendURL = 'http://localhost:5173'
+const backendURL = 'http://localhost:8090'
+
+app.use(cors({origin: frontendURL})) // Frontend app url
 
 app.use('/', createProxyMiddleware({
-  target: 'http://localhost:8090', // Backend app url
+  target: backendURL, // Backend app url
   changeOrigin: true
 }))
 
